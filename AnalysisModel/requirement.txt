@@ -1,0 +1,14 @@
+# use python=3.10 for this requirenmnets
+
+ipykernel
+pandas
+numpy
+nltk
+spacy
+# python -m spacy download en_core_web_sm
+matplotlib
+scikit-learn
+joblib
+xgboostfastapi
+uvicorn
+pydantic

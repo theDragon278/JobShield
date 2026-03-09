@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+
+*.csv
+*.joblibAnalysisModel/.venv/
+AnalysisModel/data/cleaned_jobs.csv
+AnalysisModel/data/real_or_fake_jobs.csv
