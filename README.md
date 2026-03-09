@@ -100,6 +100,8 @@ cd JobShield
 
 # ⚙️ 2. Backend Setup (FastAPI)
 
+//ADD THE DATASET IN /AnalysisModel/data/.csv
+
 Navigate to the ML backend folder:
 
 ```bash
