@@ -7,7 +7,6 @@ import Hero from "./components/Hero/Hero";
 import JobDetection from "./components/JobDetection/JobDetection";
 import Navbar from "./components/Navbar/Navbar";
 import Services from "./components/Services/Services";
-import Testimonial from "./components/Testimonial/Testimonial";
 
 const HomePage = () => {
   return (
@@ -16,7 +15,6 @@ const HomePage = () => {
       <Services />
       <Banner />
       <Banner2 />
-      <Testimonial />
     </>
   );
 };
