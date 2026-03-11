@@ -14,11 +14,6 @@ const NavLinks = [
     title: "Services",
     link: "#services",
   },
-  {
-    id: 3,
-    title: "Testimonials",
-    link: "#testimonials",
-  },
 ];
 const Navbar = () => {
   const { pathname } = useLocation();
