@@ -2,11 +2,10 @@
 
 import joblib
 import numpy as np
-import re # <-- Added back for our regex fix
+import re
 from config import MODEL_PATH, VECTORIZER_PATH, TEXT_COLS, RULES, RULE_WEIGHTS, PREDICTION_THRESHOLD
 from preprocess import preprocess_text
 
-# Load once when module is imported
 xgb_model = joblib.load(MODEL_PATH)
 vectorizer = joblib.load(VECTORIZER_PATH)
 
@@ -20,7 +19,6 @@ def keyword_risks(text: str):
 
     for rule_name, keywords in RULES.items():
         for kw in keywords:
-            # OUR FIX: Regex word boundaries to prevent substring matching
             pattern = rf"\b{re.escape(kw)}\b" 
             if re.search(pattern, lower):
                 score += RULE_WEIGHTS[rule_name]
@@ -50,7 +48,6 @@ def predict_job(job_dict: dict, threshold: float = PREDICTION_THRESHOLD):
     rule_score, triggered = keyword_risks(cleaned_text)
 
     # 5. Hybrid Scoring
-    # OUR FIX: Direct additive penalty instead of weighted average
     final_score = min(float(model_prob + rule_score), 1.0) 
     label = "FAKE" if final_score > threshold else "REAL"
 

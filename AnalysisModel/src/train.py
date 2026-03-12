@@ -10,7 +10,6 @@ from preprocess import prepare_training_data
 from model import build_xgb_model
 
 # 1. DATA PIPELINE
-# Hand over all preprocessing, vectorizing, and splitting to the Data Transformer
 X_train_vec, X_test_vec, y_train, y_test, vectorizer = prepare_training_data()
 
 # 2. TRAIN MODEL
@@ -28,7 +27,7 @@ print(classification_report(y_test, y_pred))
 with open(os.path.join(REPORT_DIR, "metrics.json"), "w") as f:
     json.dump(report, f, indent=2)
     
-# 4. EXPLAINABLE AI (Feature Importances)
+# 4. EXPLAINABLE AI 
 print("Extracting top feature importances...")
 feature_names = vectorizer.get_feature_names_out().tolist()
 importances = xgb_model.feature_importances_

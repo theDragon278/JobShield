@@ -5,19 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
 
-# --- THE FIX ---
-# Add the 'src' folder to Python's system path so the ML scripts 
-# can find each other (config, preprocess, features, etc.)
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
-# Now we can safely import the prediction logic
 from src.predict import predict_job
 
 app = FastAPI(title="JobShield API")
 
 print("--- JobShield API is initializing ---")
 
-# Configure CORS to allow requests from your React (Vite) frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], 
@@ -26,7 +21,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Define the expected JSON payload from React
 class JobData(BaseModel):
     title: str = ""
     description: str = ""
@@ -44,10 +38,8 @@ def read_root():
 
 @app.post("/predict")
 def predict_fraud(job: JobData):
-    # Convert the received JSON data into a Python dictionary
     job_dict = job.model_dump()
     
-    # Pass the dictionary to the ML model's prediction function
     result = predict_job(job_dict)
     
     return result
